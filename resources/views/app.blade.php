@@ -32,7 +32,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card card-default">
-                        <div class="card-header text-center"><h3>Summary</h3></div>
+                        <div class="card-header text-center"><h3>All Summary</h3></div>
                         <div class="card-body">
                             <p><strong>Result code: </strong> {{ $decode['result']['code'] }} <p>
                             <p><strong>Description: </strong> {{ $decode['result']['description'] }} <p>
