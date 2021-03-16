@@ -30,29 +30,7 @@ class PaymentController extends Controller
         return response()->json($response);
     }
 
-    private function getCheckoutDetails(Request $request) {
-        $url = "https://test.oppwa.com/v1/checkouts";
-        $data = "entityId=8ac7a4ca759cd78501759dd759ad02df" .
-                    "&amount=" . $request->amount .
-                    "&merchantTransactionId=" . $request->reference .
-                    "&currency=" . $request->currency . 
-                    "&paymentType=DB";
     
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                       'Authorization:Bearer OGFjN2E0Y2E3NTljZDc4NTAxNzU5ZGQ3NThhYjAyZGR8NTNybThiSmpxWQ=='));
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $responseData = curl_exec($ch);
-        if(curl_errno($ch)) {
-            return curl_error($ch);
-        }
-        curl_close($ch);
-        return $responseData;
-    }
 
     public function processPayment(Request $request) {
         
@@ -92,6 +70,30 @@ class PaymentController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+    }
+
+    private function getCheckoutDetails(Request $request) {
+        $url = "https://test.oppwa.com/v1/checkouts";
+        $data = "entityId=8ac7a4ca759cd78501759dd759ad02df" .
+                    "&amount=" . $request->amount .
+                    "&merchantTransactionId=" . $request->reference .
+                    "&currency=" . $request->currency . 
+                    "&paymentType=DB";
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                       'Authorization:Bearer OGFjN2E0Y2E3NTljZDc4NTAxNzU5ZGQ3NThhYjAyZGR8NTNybThiSmpxWQ=='));
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if(curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        return $responseData;
     }
 
     private function getPaymentStatus(Request $request) {
