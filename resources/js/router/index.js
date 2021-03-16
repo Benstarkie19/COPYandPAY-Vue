@@ -1,8 +1,5 @@
 import {createWebHistory, createRouter} from "vue-router";
 
-import Register from '../pages/Register';
-import Login from '../pages/Login';
-
 import Purchase from '../pages/Purchase';
 import Confirmation from '../pages/Confirmation';
 
