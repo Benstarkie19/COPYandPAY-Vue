@@ -47,10 +47,10 @@ reference (merchantTransactionId in the API) and a submit button. [:heavy_check_
 to make the payment. [:heavy_check_mark:]
 
 - Once the payment has been made, show on screen whether the payment has been
-successful or not. Please display the “resultCode” & “description”.
+successful or not. Please display the “resultCode” & “description”. [:heavy_check_mark:]
 
 - Somewhere on screen, show the users payment history. You don’t need to show
-everything here; timestamp, amount & reference is sufficient.
+everything here; timestamp, amount & reference is sufficient. [:heavy_check_mark:]
 
 - A link somewhere on the page to logout. [:heavy_check_mark:]
 
