@@ -7,7 +7,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-primary">
+<body class="bg">
 
     @if (Auth::check())
         <script>

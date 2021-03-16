@@ -8,7 +8,7 @@ import Confirmation from '../pages/Confirmation';
 
 import Transactions from '../pages/Transactions';
 import ShowTransaction from '../components/ShowTransaction';
-
+import Refund from '../components/Refund';
 
 export const routes = [
     {
@@ -45,6 +45,11 @@ export const routes = [
         name: 'showtransaction',
         path: '/transactions/show/:id',
         component: ShowTransaction
+    },
+    {
+        name: 'refund',
+        path: '/refund',
+        component: Refund
     },
 ];
 
