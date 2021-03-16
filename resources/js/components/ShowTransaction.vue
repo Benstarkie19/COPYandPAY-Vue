@@ -1,17 +1,15 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header text-center"><h3>Transaction: {{ transaction.merchant_transaction_id}}</h3></div>
-            <div class="card-body">
+    <div class="container mx-auto">
+            <div class="text-center"><h1>Old Transaction: {{ transaction.merchant_transaction_id}}</h1></div>
+             <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
                 <div v-for="(value, key) in transaction" :key="value.id">
                     <h5><strong>{{ formatHeader(key) }}:</strong></h5>
                     <p>{{ value }}</p>
                 </div>
                 <hr>
-                <router-link to="/transactions" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back</router-link>
+                <router-link to="/transactions" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-indigo-600 hover:bg-indigo-700 hover:shadow-lgy"> Back</router-link>
             </div>
         </div>
-    </div>
 </template>
 
 <script>

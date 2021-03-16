@@ -3,9 +3,16 @@ import {createWebHistory, createRouter} from "vue-router";
 import Purchase from '../pages/Purchase';
 import Confirmation from '../pages/Confirmation';
 
+import Register from '../pages/Register';
+import Login from '../pages/Login';
+
 import Transactions from '../pages/Transactions';
 import ShowTransaction from '../components/ShowTransaction';
 import Refund from '../components/Refund';
+
+
+
+
 
 export const routes = [
     {

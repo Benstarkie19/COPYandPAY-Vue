@@ -1,11 +1,10 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header text-center"><h3>Transaction History</h3></div>
-            <div class="card-body">
-                <table class="table table-bordered   text-center">
-                    <thead>
-                        <tr>
+	&nbsp;
+    	&nbsp;
+    <div class="container mx-auto">
+                <table class="min-w-full table-auto">
+                    <thead class="justify-between items-center">
+                        <tr class="bg-indigo-700 text-white ml-4 py-2 px-3 rounded-lg items-center ">
                             <th>Amount</th>
                             <th>Merchant Transaction Id</th>
                             <th>Timestamp</th>
@@ -18,10 +17,12 @@
                             <td>{{ transaction.merchant_transaction_id }}</td>
                             <td>{{ formatDatetime(transaction.created_at) }}</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <router-link :to="{name: 'showtransaction', params: { id: transaction.id }}" class="btn btn-primary">Show
+                                	&nbsp;
+                                <div class="btn" role="group">
+                                    <router-link :to="{name: 'showtransaction', params: { id: transaction.id }}" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-green-400 hover:bg-green-600 hover:shadow-lgy">Show
                                     </router-link>
-                                    <router-link :to="{name: 'refund', params: { id: transaction.id }}" class="btn btn-danger" v-if="transaction.refunded === 0" >Refund
+                                    	&nbsp;
+                                    <router-link :to="{name: 'refund', params: { id: transaction.id }}" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-red-400 hover:bg-red-600 hover:shadow-lgy" v-if="transaction.refunded === 0" >Refund
                                     </router-link>
                                 </div>
                             </td>
@@ -29,7 +30,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 </template>
 
 <script>

@@ -1,8 +1,7 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header text-center"><h3>Refund: {{ transaction.merchant_transaction_id}}</h3></div>
-            <div class="card-body">
+    <div class="container mx-auto">
+            <div class="text-center"><h3>Refund: {{ transaction.merchant_transaction_id}}</h3></div>
+            <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
                 <h5><strong>Amount:</strong></h5>
                 <p>{{ formatCurrency(transaction.currency) }}{{ transaction.amount }}</p>
 
@@ -13,12 +12,11 @@
                 <p>{{ transaction.created_at }}</p>
                 <hr>
                 <div class="row container">
-                    <router-link to="/transactions" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back</router-link>
-                    <form><button type="submit" class="btn btn-danger ml-5" @click="handleSubmit">Refund</button></form>
+                    <router-link to="/transactions" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-green-400 hover:bg-green-600 hover:shadow-lg"><i class="fas fa-arrow-left"></i> Back</router-link>
+                    <form><button type="submit" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-red-400 hover:bg-red-600 hover:shadow-lgy" @click="handleSubmit">Refund</button></form>
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>

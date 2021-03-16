@@ -25,7 +25,7 @@
                                 <label for="reference" class="block mb-2 text-sm  text-black-600 dark:text-black-400">Reference:</label>
                                 <div class="col-md-6">
                                     <input id="reference" type="text" class="form-control rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-6 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" v-model="reference"
-                                           required autocomplete="off">
+                                       placeholder="you@company.com"    required autocomplete="off">
                                 </div>
                             </div>
 
@@ -41,9 +41,9 @@
                             </div>
 
                             <div class="mb-10">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="text-center">
                                     <button type="submit" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-indigo-600 hover:bg-indigo-700 hover:shadow-lgy" @click="handleSubmit">
-                                        Submit
+                                        Submit Payment
                                     </button>
                                 </div>
                             </div>
@@ -52,10 +52,12 @@
                 </div>
 
                 <div v-else class="card card-default">
-                    <div class="card-header text-center"><h3>Billing</h3></div>
+                    <div class="text-center"><h3>Submit Payment</h3></div>
                     <div class="card-body">
 
                         <form method="post" v-bind:action="action_url" class="paymentWidgets" data-brands="VISA MASTER AMEX"></form>
+
+
 
                     </div>
                 </div>
@@ -117,7 +119,42 @@
             externalScript.setAttribute('src', source_url)
             document.head.appendChild(externalScript)
         }
+        
   }
+  
 
 }
 </script>
+
+<script>
+    var wpwlOptions = {
+      style: "plain",
+      billingAddress: {
+        country: "US",
+        state: "NY",
+        city: "New York",
+        street1: "111 6th Avenu",
+        street2: "",
+        postcode: "12312"
+      },
+      forceCardHolderEqualsBillingName: true,
+      showCVVHint: true,
+      brandDetection: true,
+      onReady: function(){ 
+        $(".wpwl-group-cardNumber").after($(".wpwl-group-brand").detach());
+        $(".wpwl-group-cvv").after( $(".wpwl-group-cardHolder").detach());
+        var visa = $(".wpwl-brand:first").clone().removeAttr("class").attr("class", "wpwl-brand-card wpwl-brand-custom wpwl-brand-VISA")
+        var master = $(visa).clone().removeClass("wpwl-brand-VISA").addClass("wpwl-brand-MASTER");
+        $(".wpwl-brand:first").after( $(master)).after( $(visa));
+      },
+      onChangeBrand: function(e){
+        $(".wpwl-brand-custom").css("opacity", "0.3");
+        $(".wpwl-brand-" + e).css("opacity", "1"); 
+      }
+    }
+
+</script>
+
+<style>
+
+</style>
