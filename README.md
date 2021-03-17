@@ -10,7 +10,7 @@
 
 ## Install For Local
 
-- git clone  https://github.com/Benstarkie19/COPYandPAY-Integration
+- git clone  https://github.com/Benstarkie19/COPYandPAY-Vue-Tailwind
 
 - composer update
 
