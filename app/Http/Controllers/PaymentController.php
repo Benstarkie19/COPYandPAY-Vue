@@ -32,6 +32,43 @@ class PaymentController extends Controller
 
     
 
+    
+
+    private function storeTransaction($user_id, $jsonData) {
+        DB::table('transactions')->insert([
+            'transaction_id' => $jsonData['id'],
+            'payment_type' => $jsonData['paymentType'],
+            'payment_brand' => $jsonData['paymentBrand'],
+            'amount' => $jsonData['amount'],
+            'currency' => $jsonData['currency'],
+            'merchant_transaction_id' => $jsonData['merchantTransactionId'],
+            'user_id' => $user_id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+    }
+
+    
+
+    private function getPaymentStatus(Request $request) {
+        $url = "https://test.oppwa.com/v1/checkouts/" . $request->id . "/payment";
+        $url .= "?entityId=8ac7a4ca759cd78501759dd759ad02df";
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                       'Authorization:Bearer OGFjN2E0Y2E3NTljZDc4NTAxNzU5ZGQ3NThhYjAyZGR8NTNybThiSmpxWQ=='));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if(curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        return $responseData;
+    }
+
     public function processPayment(Request $request) {
         
         $success = true;    
@@ -58,20 +95,6 @@ class PaymentController extends Controller
         }
     }
 
-    private function storeTransaction($user_id, $jsonData) {
-        DB::table('transactions')->insert([
-            'transaction_id' => $jsonData['id'],
-            'payment_type' => $jsonData['paymentType'],
-            'payment_brand' => $jsonData['paymentBrand'],
-            'amount' => $jsonData['amount'],
-            'currency' => $jsonData['currency'],
-            'merchant_transaction_id' => $jsonData['merchantTransactionId'],
-            'user_id' => $user_id,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ]);
-    }
-
     private function getCheckoutDetails(Request $request) {
         $url = "https://test.oppwa.com/v1/checkouts";
         $data = "entityId=8ac7a4ca759cd78501759dd759ad02df" .
@@ -86,25 +109,6 @@ class PaymentController extends Controller
                        'Authorization:Bearer OGFjN2E0Y2E3NTljZDc4NTAxNzU5ZGQ3NThhYjAyZGR8NTNybThiSmpxWQ=='));
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $responseData = curl_exec($ch);
-        if(curl_errno($ch)) {
-            return curl_error($ch);
-        }
-        curl_close($ch);
-        return $responseData;
-    }
-
-    private function getPaymentStatus(Request $request) {
-        $url = "https://test.oppwa.com/v1/checkouts/" . $request->id . "/payment";
-        $url .= "?entityId=8ac7a4ca759cd78501759dd759ad02df";
-    
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                       'Authorization:Bearer OGFjN2E0Y2E3NTljZDc4NTAxNzU5ZGQ3NThhYjAyZGR8NTNybThiSmpxWQ=='));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $responseData = curl_exec($ch);

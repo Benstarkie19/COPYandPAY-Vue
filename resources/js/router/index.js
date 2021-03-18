@@ -18,7 +18,7 @@ export const routes = [
     {
         name: 'home',
         path: '/',
-        component: Login
+        component: Register
     },
     {
         name: 'register',

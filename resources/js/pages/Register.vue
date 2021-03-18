@@ -11,27 +11,29 @@
                     {{ error }}
                 </div>
 
-                    <div class="mb-6">
+                    <div class="mb-6 md:my-6">
                         <label for="name" class="block mb-2 text-sm  text-black-600 dark:text-black-400">Name</label>
                         <div class="col-md-6">
                             <input id="name"  type="email" placeholder="Benjamin" class="form-control rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-6 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"   v-model="name" required  autofocus autocomplete="off">
                     </div>
                     </div>
-                    <div class="mb-6">
+                    <div class="mb-6 md:my-6">
                         <label for="email"  class="block mb-2 text-sm text-black-600 dark:text-black-400">Email Address</label>
                         </div>
                          <div class="col-md-6">
                              <input id="email" type="email" placeholder="you@company.com" class="form-control  rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-6 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" v-model="email" required autofocus autocomplete="off">
                                 </div>
-                    <div class="mb-6">
+                    <div class="mb-6 md:my-6">
                         <label for="password" class="block mb-2 text-sm  text-black-600 dark:text-black-400">Password</label>
                         <div class="col-md-6">
                             <input id="password" type="password" placeholder="1234" class="form-control rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-6 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" v-model="password" required autocomplete="off">
                             </div>
                             </div>
 
-                    <div class="mb-10">
-                        <button type="submit" class="focus:outline-none  text-gray-200  px-2 py-1 rounded bg-indigo-600 hover:bg-indigo-700 hover:shadow-lgy" @click="handleSubmit"> Register </button>
+                    <div class="items-stretch md:items-center">
+                        <button type="submit" class="focus:outline-none   text-gray-200  px-2 py-1 rounded bg-indigo-600 hover:bg-indigo-700 hover:shadow-lgy" @click="handleSubmit"> Register </button>
+                        &nbsp;
+                        <router-link to="/login" class="focus:outline-none   text-gray-200  px-2 py-1 rounded bg-indigo-600 hover:bg-indigo-700 hover:shadow-lgy "> Login</router-link>
                         </div>
                 </form>
             </div>

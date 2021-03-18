@@ -5,7 +5,7 @@
   <header class="text-gray-100 bg-gray-900 body-font shadow w-full">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-             <div class="navbar-nav" v-if="isLoggedIn">
+             <div class="navbar-nav " v-if="isLoggedIn">
                     <router-link @click.native="showSummary=false" to="/purchase" class="nav-item nav-link">Payment Testing</router-link>
                     &nbsp;
                     &nbsp;
@@ -24,7 +24,7 @@
             <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center lg:items-center lg:justify-center mb-4 md:mb-0">
                 <span class="ml-3 text-xl">Total Processing</span>
             </a>
-            <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+            <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0 ">
                 <a href="https://github.com/Benstarkie19" class="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
                     Github
                 </a>

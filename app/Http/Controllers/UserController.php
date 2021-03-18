@@ -12,9 +12,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    /**
-     * Register
-     */
+
     public function register(Request $request)
     {
         $request->validate([
@@ -36,7 +34,6 @@ class UserController extends Controller
             $message = $ex->getMessage();
         }
 
-        // response
         $response = [
             'success' => $success,
             'message' => $message,
@@ -44,9 +41,27 @@ class UserController extends Controller
         return response()->json($response);
     }
 
-    /**
-     * Login
-     */
+
+  
+    public function logout()
+    {
+        try {
+            Session::flush();
+            $success = true;
+            $message = 'Successfully logged out';
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+        return response()->json($response);
+    }
+
+
     public function login(Request $request)
     {
         $credentials = [
@@ -62,29 +77,7 @@ class UserController extends Controller
             $message = 'Wrong username or password!';
         }
 
-        // response
-        $response = [
-            'success' => $success,
-            'message' => $message,
-        ];
-        return response()->json($response);
-    }
 
-    /**
-     * Logout
-     */
-    public function logout()
-    {
-        try {
-            Session::flush();
-            $success = true;
-            $message = 'Successfully logged out';
-        } catch (\Illuminate\Database\QueryException $ex) {
-            $success = false;
-            $message = $ex->getMessage();
-        }
-
-        // response
         $response = [
             'success' => $success,
             'message' => $message,
