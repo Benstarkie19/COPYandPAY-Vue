@@ -16,9 +16,13 @@
 
 - php artisan key:generate
 
+- php artisan db:seed  // php artisan migrate:fresh --seed
+
 - php artisan migrate
 
 - npm install
+
+- npm run dev
 
 - php artisan serve
 
